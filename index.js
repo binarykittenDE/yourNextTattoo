@@ -2,7 +2,7 @@
  * Created by franziskah on 09.10.18.
  */
 
-var TwitterPackage = require('twitter');
+let TwitterPackage = require('twitter');
 
 let Bot = new TwitterPackage({
  consumer_key: process.env.BOT_CONSUMER_KEY,
@@ -91,11 +91,7 @@ function generateTattoo() {
         ' your ' + bodyPart + ' ' + HASHTAGS;
 }
 
-let generatedTattoo = generateTattoo();
-
-console.log(generatedTattoo);
-
-Bot.post('statuses/update', {status: generatedTattoo}, function (error, tweet, response) {
+Bot.post('statuses/update', {status: generateTattoo()}, function (error, tweet, response) {
     if (error) {
         console.log(error);
     }
