@@ -125,4 +125,4 @@ function generateTattoo() {
 
 let generatedTattoo = generateTattoo();
 
-Bot.tweet('You should get a ' + generatedTattoo);
+Bot.tweet('This is a test.');
