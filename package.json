@@ -9,7 +9,5 @@
   "author": "Franziska Haaf",
   "license": "ISC",
   "dependencies": {
-    "node-twitterbot": "^0.2.2",
-    "twit": "^2.2.11"
   }
 }
