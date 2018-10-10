@@ -2,12 +2,14 @@
  * Created by franziskah on 09.10.18.
  */
 
-var Twit = require('twit');
-var T = new Twit({
-    consumer_key: 'xC1K9rrNtAEwYARUlb45Sef3E',
-    consumer_secret: 'T93w6nfneDnwoypMUEbTDDD4k7MbY3tAb1klgAE9PWY6UN6gNj',
-    access_token: '1049939418461741056-orvbJF7L4GTVMxjgyLJXAaKKrSkaB9',
-    access_token_secret: 'CuFv5vwXauNI8fJrZTEapoGr6W4v8P0Yu6n81cwOqJOLg'
+let Twit = require('twit');
+let TwitterBot = require('node-twitterbot').TwitterBot;
+
+let Bot = new TwitterBot({
+    consumer_key: process.env.BOT_CONSUMER_KEY,
+    consumer_secret: process.env.BOT_CONSUMER_SECRET,
+    access_token: process.env.BOT_ACCESS_TOKEN,
+    access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
 });
 
 const BODY_PARTS = ['Ankle', 'Arm', 'Back', 'Bicep', 'Buttocks', 'Calf', 'Chest', 'Right Ear', 'Left Ear', 'Face', 'Foot',
@@ -113,17 +115,14 @@ function removeArrayValue(array, value) {
 function generateTattoo() {
     const tattooStyle = getTattooStyle(TATTOO_STYLES);
     const motives = getMotives(MOTIVES);
-    const getBodyPart = getBodyPart(BODY_PARTS);
-    console.log(tattooStyle);
-    console.log(motives);
-    console.log(getBodyPart);
-    //todo twittern
+    const bodyPart = getBodyPart(BODY_PARTS);
+    let motivesString = '';
+    for (let i = 0; i < motives.length; i++) {
+        motivesString = motivesString + ' + ' + motives[i];
+    }
+    return tattooStyle + ' ' + motivesString + 'on ' + bodyPart;
 }
 
+let generatedTattoo = generateTattoo();
 
-//Tweet
-T.post('statuses/update', { status: 'hello world!' }, function(err, data, response) {
-    if (err){
-        console.log(err);
-    }
-});
+Bot.tweet('You should get a ' + generatedTattoo);
