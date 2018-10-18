@@ -11,6 +11,7 @@ let Bot = new TwitterPackage({
  access_token_secret: process.env.BOT_ACCESS_TOKEN_SECRET
  });
 
+
 const BODY_PARTS = ['ankle', 'arm', 'back', 'bicep', 'buttocks', 'calf', 'chest', 'right ear', 'left ear', 'face', 'foot',
     'forearm', 'full back', 'full leg', 'half sleeve', 'hand', 'head', 'hip', 'knee', 'leg', 'lip', 'lower back',
     'mouth', 'neck', 'ribcage', 'shoulder', 'side', 'sleeve', 'sternum', 'stomach', 'thigh', 'torso', 'upper back', 'wrist'];
